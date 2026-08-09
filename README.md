@@ -1,61 +1,68 @@
-<<<<<<< HEAD
-# CivicFix AI 🚀
+# 🏙️ CivicFix AI
 
-**CivicFix AI** is an AI-powered community issue reporting and prioritization prototype for HackDevengers 1.0.
+> **AI-powered civic issue analysis and routing for faster community action.**
 
-## Problem
-Community complaints about potholes, streetlights, garbage, drainage and safety are often unstructured. That makes triage and routing slower.
+CivicFix AI is a web-based AI prototype that transforms citizen complaints written in natural language into structured, actionable reports.
 
-## Solution
-Users describe an issue in plain language. CivicFix AI turns it into a structured report containing category, urgency, summary, recommended action, department and tags.
+Instead of requiring users to know which department should handle a problem, CivicFix AI analyzes a complaint, identifies the issue category, estimates urgency, generates a concise summary, recommends an action, suggests the responsible department, and extracts relevant tags.
 
-## Stack
-React + Vite · FastAPI · Python · Pydantic · Google Gemini API
+Built for **HackDevengers 1.0**.
 
-## Flow
-User → React → `POST /api/analyze` → FastAPI → Gemini → validated JSON → Result dashboard
+---
 
-If Gemini is unavailable, the backend uses a deterministic keyword-based fallback so the demo remains usable.
+## 🚀 Demo
 
-## Local setup
-### Backend
-```bash
-cd backend
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-copy .env.example .env
-# Put your Gemini API key in .env
-uvicorn app.main:app --reload
-```
-Backend: `http://127.0.0.1:8000` · Swagger: `/docs`
+> Add your deployed frontend URL here after deployment.
 
-### Frontend
-```bash
-cd frontend
-npm install
-copy .env.example .env
-npm run dev
-```
-Frontend: `http://localhost:5173`
+**Live Demo:** `YOUR_DEPLOYED_URL`
 
-## Deployment
-Backend: Render Web Service, root `backend`, build `pip install -r requirements.txt`, start `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
+---
 
-Frontend: Vercel, root `frontend`, build `npm run build`, output `dist`, environment variable `VITE_API_URL=https://YOUR-BACKEND.onrender.com`.
+## 🎯 Problem
 
-## Environment variables
-Backend: `GEMINI_API_KEY`, `GEMINI_MODEL`, `FRONTEND_ORIGIN`
-Frontend: `VITE_API_URL`
+Citizens frequently report problems such as:
 
-Never commit real API keys.
+- Potholes and damaged roads
+- Broken streetlights
+- Garbage accumulation
+- Water leakage
+- Public infrastructure damage
+- Other local civic issues
 
-## Future scope
-Map-based reporting, image issue detection, duplicate complaint detection, multilingual support, citizen history, department dashboards and analytics.
+However, complaints are often unstructured and may not contain enough information for quick routing.
 
-## Safety
-This is a prototype routing/classification aid. AI output should be reviewed by responsible authorities before operational decisions.
-=======
-# CivicFix-AI
-CivicFix AI transforms unstructured community complaints into prioritized, actionable civic reports using AI.
->>>>>>> 93ac7036a351aeb7ebb4b5f5f60360423a2366dc
+This can result in:
+
+- Incorrect department assignment
+- Delayed response
+- Difficulty prioritizing urgent issues
+- Repetitive manual classification
+- Poorly structured complaint data
+
+---
+
+## 💡 Our Solution
+
+CivicFix AI acts as an intelligent first layer between a citizen and a civic response system.
+
+A user simply describes an issue in plain language.
+
+For example:
+
+> "There is a large pothole near the main bus stop causing traffic problems."
+
+CivicFix AI converts it into a structured report:
+
+```json
+{
+  "category": "Road Infrastructure",
+  "urgency": "Medium",
+  "summary": "There is a large pothole near the main bus stop causing traffic problems.",
+  "recommended_action": "Inspect the reported road infrastructure issue and assign it to the appropriate field team.",
+  "department": "Municipal Roads Department",
+  "tags": [
+    "road",
+    "infrastructure"
+  ],
+  "ai_generated": true
+}
